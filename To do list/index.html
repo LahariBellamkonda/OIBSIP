@@ -2,21 +2,149 @@
 <html>
   <head>
     <title>To-Do List</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <style>
+      body {
+        #background:linear-gradient(-90deg, #6e1311, #c85252, #f59696, #c8f31d);
+        animation:{ gradient 15s ease infinite;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color:pink;
+        box-shadow: 0 0 10px #333;
+        border-radius: 10px;
+      }
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      form {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        flex: 1;
+        height: 40px;
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #333;
+      }
+      input[type="submit"] {
+        height: 40px;
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: #555;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #333;
+        cursor: pointer;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px #333;
+        border-radius: 5px;
+      }
+      li label {
+        flex: 1;
+      }
+      li input[type="checkbox"] {
+        margin-right: 10px;
+      }
+      li button {
+        height: 30px;
+        font-size: 14px;
+        padding: 5px 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #333;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <h1>To-Do List</h1>
-    <div id="app">
-      <input id="task-input" type="text" placeholder="Enter a task" />
-      <button id="add-button">Add</button>
-      <ul id="task-list"></ul>
-      <div id="filter-buttons">
-        <button class="filter-button" data-filter="all">All</button>
-        <button class="filter-button" data-filter="active">Active</button>
-        <button class="filter-button" data-filter="completed">Completed</button>
-      </div>
+    <div class="container">
+      <h1>To-Do List</h1>
+      <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="Add new item" />
+        <input type="submit" value="Add" />
+      </form>
+      <ul id="todo-list">
+        <li>
+          <label>
+            <input type="checkbox" />
+          </label>
+          <button>Delete</button>
+        </li>
+      </ul>
     </div>
+    <script>
+      const form = document.querySelector("#todo-form");
+      const input = document.querySelector("#todo-input");
+      const list = document.querySelector("#todo-list");
 
-    <script src="script.js"></script>
+      form.addEventListener("submit", (e) => {
+        confirm("added item to list");
+        e.preventDefault();
+        if (input.value.trim() !== "") {
+          const li = document.createElement("li");
+          const label = document.createElement("label");
+          const checkbox = document.createElement("input");
+          const span = document.createElement("span");
+          const button = document.createElement("button");
+          checkbox.setAttribute("type", "checkbox");
+          span.textContent = input.value;
+          button.textContent = "Delete";
+
+          label.appendChild(checkbox);
+          label.appendChild(span);
+          li.appendChild(label);
+          li.appendChild(button);
+          list.appendChild(li);
+
+          input.value = "";
+        }
+      });
+
+      list.addEventListener("click", (e) => {
+        if (e.target.tagName.toLowerCase() === "button") {
+          e.target.parentNode.remove();
+        }
+      });
+    </script>
   </body>
 </html>

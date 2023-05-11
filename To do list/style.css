@@ -1,0 +1,54 @@
+body {
+    background: linear-gradient(-90deg, #6e1313, #c85252, #f59696, #c8f31d);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  #app {
+    margin-top: 20px;
+  }
+  
+  input[type="text"] {
+    width: 200px;
+    padding: 5px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin-left: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: move;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+  
+  #filter-buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .filter-button {
+    margin-right: 5px;
+  }
+  
+  .delete-button {
+    margin-left: auto;
+  }
